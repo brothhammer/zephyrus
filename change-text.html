@@ -1,0 +1,72 @@
+<!-- Usage: opnet change-text.html
+     Implementation: In the style tag we supply the css for body, h1 and button elements.
+        In the body tag we have a h1 element with id heading and a button element with an onclick event.
+        In the script tag we have a function changeText() which changes the text of the h1 element when the button is clicked.
+        The function accesses the dom element with id heading and changes its text content based on the value of isOriginal variable.
+  -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            body {
+                font-family: Montserrat, sans-serif;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                min-height: 100vh;
+                margin: 0;
+                background-color: #f0f2f5;
+            }
+    
+            h1 {
+                color: #1a1a1a;
+                transition: color 0.3s ease;
+            }
+    
+            button {
+                padding: 12px 24px;
+                font-size: 16px;
+                border: none;
+                border-radius: 6px;
+                background-color: #36596d;
+                color: white;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+            }
+    
+            button:hover {
+                background-color: #9fad3e;
+            }
+    
+            .zephyrus {
+                color: #9fad3e;
+            }
+        </style>
+    </head>
+    <body>
+        <h1 id="heading">Hello! Click the button below to change this heading</h1>
+        <button onclick="changeText()">Change Text</button>
+    
+        <script>
+            // Track if the text is original or not
+            let isOriginal = true;
+    
+            // reference outside the function to avoid querying the dom multiple times
+            const heading = document.getElementById("heading");
+            // Change back and forth between these texts
+            const texts = [
+                // Include template literal to style the company name with a different color
+                `Excited to learn more about <span class='zephyrus'>Zephyrus Engineering!!!</span>`,
+                heading.textContent
+            ];
+    
+            // Change the text of the heading
+            function changeText() {
+                heading.innerHTML = isOriginal ? texts[0] : texts[1];
+                isOriginal = !isOriginal;
+            }
+        </script>
+    </body>
+    </html>
+    
